@@ -64,11 +64,21 @@
 
             fixed4 frag (v2f i) : SV_Target
             {
-                // sample the texture
                 fixed4 col = tex2D(_MainTex, i.uv);
-                // apply fog
+                //tex2Dについて
+                //テクスチャサンプリングを行う関数, 指定したテクスチャから色を取り出す
                 UNITY_APPLY_FOG(i.fogCoord, col);
+                //UNITY_APPLY_FOGについて
+                //三段階にわけて展開できる
+                //#define UNITY_APPLY_FOG(coord, col) → UINITY_APPLY_FOG_COLOR(coord, col, unity_FogColor)
+                //#define UNITY_APPLY_FOG_COLOR(coord, col, unity_FogColor)　→ UNITY_FOG_LERP_COLOR(col, fogCol, coord.x) //unity_FogColor = fogCol
+                //#define UNITY_FOG_LERP_COLOR(col, fogCol, fogFac) → col.rgb = lerp(fogCol.rgb, col.rgb, saturate(fogFac)) //fogFac = coord.x
+                //つまりは col.rgb = lerp(unity_FogColor.rgb, col.rgb, saturate(i.coord.x))
+                //saturateは受け取った値を0~1の値におさめる関数
+                //i.fogCoord.xにはそもそもvert関数内で, o.vertex.zが代入されている
+                //lerp関数で, **o.vertex.z** によってfogCol(フォグの色)かcol(テクスチャサンプリングした色)の間の色に決定している.
                 return col;
+                //画面に返す色
             }
             ENDCG
         }
