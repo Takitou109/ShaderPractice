@@ -76,7 +76,7 @@
                 //つまりは col.rgb = lerp(unity_FogColor.rgb, col.rgb, saturate(i.coord.x))
                 //saturateは受け取った値を0~1の値におさめる関数
                 //i.fogCoord.xにはそもそもvert関数内で, o.vertex.zが代入されている
-                //lerp関数で, **o.vertex.z** によってfogCol(フォグの色)かcol(テクスチャサンプリングした色)の間の色に決定している.
+                //lerp関数で, **o.vertex.z** によってfogCol(フォグの色)とcol(テクスチャサンプリングした色)の間の色に決定している.
                 return col;
                 //画面に返す色
             }
