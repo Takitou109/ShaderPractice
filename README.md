@@ -1,3 +1,3 @@
 # Shader Practice
-## 頂点フラグメントシェーダの練
-**Assets/Samples内にサンプル表示
+## 頂点フラグメントシェーダの練習
+Assets/Samples内にサンプル表示
