@@ -3,7 +3,7 @@
     //基本を理解するためのスクリプト
     Properties
     {
-        _MainTex ("Texture", 2D) = "white" {}
+        _Maintex ("Texture", 2D) = "white" {}
     }
     SubShader
     {
